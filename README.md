@@ -99,36 +99,9 @@ To test the core hypothesis—*whether all features are necessary for prediction
 3. **Sensor Infrastructure Optimization:** Low-variance and highly redundant sensors can be decommissioned or monitored at lower sampling frequencies without degrading yield prediction capability[cite: 2].
 
 ---
+---
 
-## How to Run & Reproduce
+## Author & Project Credits
 
-```python
-# Import main dependencies
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.impute import SimpleImputer
-from sklearn.ensemble import RandomForestClassifier
-from imblearn.over_sampling import SMOTE
-
-# 1. Load data
-df = pd.read_csv('signal-data.csv')
-
-# 2. Run preprocessing
-X = df.drop(columns=['Time', 'Pass/Fail'])
-y = df['Pass/Fail']
-
-# 3. Handle missing values
-imputer = SimpleImputer(strategy='median')
-X_imputed = imputer.fit_transform(X)
-
-# 4. Train/Test Split
-X_train, X_test, y_train, y_test = train_test_split(
-    X_imputed, y, test_size=0.2, random_state=42, stratify=y
-)
-
-# 5. Model fitting with SMOTE
-smote = SMOTE(random_state=42)
-X_train_res, y_train_res = smote.fit_resample(X_train, y_train)
-
-clf = RandomForestClassifier(random_state=42)
-clf.fit(X_train_res, y_train_res)
+* **Author:** Meeth E Patel
+* **Institution:** Sapthagiri NPS University, Bangalore
